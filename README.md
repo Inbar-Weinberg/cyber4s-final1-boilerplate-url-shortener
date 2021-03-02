@@ -75,4 +75,4 @@ Optionally, You can create a github [action](https://docs.github.com/en/actions)
 - Submit a link to your repo to the CRM.
 
 GOOD LUCK!
-hello
+hello!
