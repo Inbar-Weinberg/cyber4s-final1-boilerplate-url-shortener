@@ -1,50 +1,62 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
+
+<head>
     <title>URL Shortener</title>
     <link rel="icon" type="image/png" href="../public/favicon.ico" />
     <link href="./public/style.css" rel="stylesheet" type="text/css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <h1>URL Shortener Microservice</h1>
     <main>
-      <section>
-        <form action="api/shorturl/new" method="POST">
-          <fieldset>
-            <legend>URL Shortener</legend>
-            <label for="url_input">URL:</label>
-            <input
-              id="url_input"
-              type="url"
-              name="url"
-              placeholder="Enter you URL"
-            />
-            <input type="submit" value="POST URL" />
-          </fieldset>
-        </form>
-      </section>
-      <section>
-          <table>
-              <thead>
-                  <tr>
-                      <th>Full URL</th>
-                      <th>Short URl</th>
-                      <th>Full URL</th>
-                  </tr>
-              </thead> 
-              <tbody>
-                  <
-              </tbody>
+        <section>
+            <form action="api/shorturl/new" method="POST">
+                <fieldset>
+                    <legend>URL Shortener</legend>
+                    <label for="url_input">URL:</label>
+                    <input id="url_input" type="url" name="url" placeholder="Enter your URL" required/>
+                    <input type="submit" value="POST URL" />
+                </fieldset>
+            </form>
+        </section>
+        <section>
+            <div><ul>
+                <li><a href='/api/statistics'>Stats for nerds</a></li>
+            </ul></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Full URL</th>
+                        <th>Short URl</th>
+                        <th>Stats</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href='https://www.google.com/'>
+                                https://www.google.com/
+                            </a> </td>
 
-              </thead>
-          </table>
+                        <td><a href='/shorturl/123456'>
+                                /123456
+                            </a></td>
+                        <td><a href='/api/statistics/:shorturl-id'>
+                            url stats
+                        </a></td>
+                    </tr>
 
-      </section>
+                </tbody>
+
+                </thead>
+            </table>
+
+        </section>
     </main>
     <footer>
-      <p>By <a href="https://www.freecodecamp.org/">freeCodeCamp</a></p>
+        <p>By <a href="https://www.freecodecamp.org/">freeCodeCamp</a></p>
     </footer>
-  </body>
+</body>
+
 </html>
