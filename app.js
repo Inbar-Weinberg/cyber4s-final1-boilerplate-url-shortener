@@ -9,7 +9,7 @@ app.set("view engine", "ejs");
 
 //---
 app.use(cors()); // allow access to write files
-//app.use("/public", express.static(`./public`)); //
+app.use("/public", express.static(`./public`)); 
 
 
 app.get("/", (req, res) => {
