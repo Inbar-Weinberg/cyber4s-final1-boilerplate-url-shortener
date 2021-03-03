@@ -5,7 +5,7 @@
 <head>
     <title>URL Shortener</title>
     <link rel="icon" type="image/png" href="../public/favicon.ico" />
-    <link type="text/css" href="../public/style.css" rel="stylesheet"  />
+    <link type="text/css" href="../public/style.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -16,38 +16,40 @@
                 <fieldset>
                     <legend>URL Shortener</legend>
                     <label for="url_input">URL:</label>
-                    <input id="url_input" type="url" name="url" placeholder="Enter your URL" required/>
+                    <input id="url_input" type="url" name="url" placeholder="Enter your URL" required />
                     <input type="submit" value="POST URL" />
                 </fieldset>
             </form>
         </section>
-        <section id = 'url-list'>
-            <div><ul>
-                <li><a href='/'>URL List</a></li>
+        <section id='url-list'>
+            <div>
+                <ul>
+                    <li><a href='/'>URL List</a></li>
 
-                <li><a href='/api/statistics'>Stats for nerds</a></li>
-            </ul></div>
+                    <li><a href='/api/statistics'>Stats for nerds</a></li>
+                </ul>
+            </div>
             <table>
                 <thead>
                     <tr>
                         <th>Full URL</th>
                         <th>Short URl</th>
-                        <th>Stats</th>
+                        <th>Clicks</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><a href='https://www.google.com/'>
-                                https://www.google.com/
-                            </a> </td>
+                            <tr>
+                                <td><a href='https://www.google.com/'>
+                                        https://www.google.com/
+                                    </a> </td>
 
-                        <td><a href='/shorturl/123456'>
-                                /123456
-                            </a></td>
-                        <td><a href='/api/statistics/:shorturl-id'>
-                            url stats
-                        </a></td>
-                    </tr>
+                                <td><a href='/shorturl/123456'>
+                                        /123456
+                                    </a></td>
+                                <td><a href='/api/statistics/:shorturl-id'>
+                                        url stats
+                                    </a></td>
+                            </tr>
 
                 </tbody>
 
