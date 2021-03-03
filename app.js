@@ -12,3 +12,11 @@ app.get("/", (req, res) => {
 });
 
 module.exports = app;
+
+npm i ejs
+//register view engine:
+app.set('view engine','ejs') // looks for 'views' folder by default
+app.set('views','folder name') // Looks for view in other folder.
+
+// in app.js use res.render ("index"(no '.js' ))
+
