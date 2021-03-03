@@ -1,6 +1,5 @@
 const shortid = require("shortid");
-
-module.export = class urlDataTemplate {
+class urlDataTemplate {
   constructor(url) {
     this.longUrl = url;
     this.shortUrl = shortid.generate();
@@ -8,6 +7,8 @@ module.export = class urlDataTemplate {
     this.dateCreated = new Date();
   }
 };
+
+module.export = class urlDataTemplate{};
 /**
                     <% allUrls.forEach(url=>{%>
                         <td><a href='<%= url.longUrl %>'>
