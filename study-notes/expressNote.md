@@ -18,10 +18,9 @@ You NEED:
 - express.json() and express.urlencoded()
 - for POST and PUT requests.
   these request are SENDING Data.
-    -express.urlencoded({ extended: true })--> ('foo[bar]=baz') ==> foo: { bar: 'baz' }
-    -express.urlencoded({ extended: false })--> no nesting - sometimes needed
-    important
-
+  -express.urlencoded({ extended: true })--> ('foo[bar]=baz') ==> foo: { bar: 'baz' }
+  -express.urlencoded({ extended: false })--> no nesting - sometimes needed
+  important
 
 You DO NOT NEED:
 
@@ -34,3 +33,9 @@ there are also express.text and express.raw
 
 - .render(view [, locals] [, callback]) create new file
 - .redirect([status,] path)
+
+## To send html back in a response:
+
+- with express
+- res.sendFile()
+- or express.static() middle ware function

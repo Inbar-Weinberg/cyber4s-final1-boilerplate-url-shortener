@@ -37,12 +37,6 @@ devStart: "nodemon server.js'
   create?({full: req.body.fullUrl})
   res.redirect?
 
-# To send html:
-
-    - with express
-    - res.sendFile()
-    - or express.static() middle ware function
-
 # .replit file
 
 language = "nodejs"
@@ -61,18 +55,26 @@ res.send("index.html")
   app.use('/', express.static(process.cwd() + '/src'))
 - \_\_dirname: returns file directory
 
-
 # Questions:
 
-1. are we using ejs package? any thing else?
-2. Bootstrap?
-3. cors?
+1. cors?
 
 # Need to learn to send the request from front end side
+
 find your origin URL with: URL=window.location.origin
 
 # EJS - embed JavaScript into Html
 
-# use try catch for async 
+# use try catch for async
 
+# get nano id with:
 
+no need to install part of node
+import { nanoid } from 'nanoid'
+model.id = nanoid() //=> "V1StGXR8_Z5jdHi6B-myT"
+
+# notes about rendering:
+
+app.set('view engine','ejs') // what extension to look for to run the tamplate engine
+app.set('views','folder name') // Looks for view in other folder.
+looks at 'views' folder by default if this is note assigned

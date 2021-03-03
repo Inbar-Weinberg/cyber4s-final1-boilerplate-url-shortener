@@ -2,21 +2,22 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const api = require("./api");
 
-app.use(cors());
+//----
+app.set("view engine", "ejs");
 
-app.use("/public", express.static(`./public`));
+//---
+app.use(cors()); // allow access to write files
+//app.use("/public", express.static(`./public`)); //
+
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
+  res.render("index.ejs"//, (err,html)=>{    res.send(Error); double check this works  }
+  );
 });
+
 
 module.exports = app;
 
-
-//register view engine:
-app.set('view engine','ejs') // looks for 'views' folder by default
-app.set('views','folder name') // Looks for view in other folder.
-
-// in app.js use res.render ("index"(no '.js' ))
 
