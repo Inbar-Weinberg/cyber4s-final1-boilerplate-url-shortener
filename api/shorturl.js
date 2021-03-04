@@ -51,12 +51,18 @@ async function addNewUrl(req, res, next) {
   const newUrlData = new dataTemplate(req.body.url);
   const message = newUrlData.shortUrl;
   try {
+
     req.allUrls.urls.push(newUrlData);
+
+
+    
     await fsPromises.writeFile(
       URL_DATABASE_DIR,
       JSON.stringify(req.allUrls, null, 4)
     );
     res.status(200);
+    //console.log.(`${process.cwd()}/${res.statusCode}/${message}`)
+
     res.redirect(`../../${res.statusCode}/${message}`);
   } catch (error) {
     error.status = 505;
