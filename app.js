@@ -26,9 +26,10 @@ app.get("/(:id)?(/:url)?", async (req, res) => {
       console.log(error);
     }
   }
- // res.redirect(`/${req.params.id}`)
+  // res.redirect(`/${req.params.id}`)
 });
 
 app.use("/api", api);
+
 
 module.exports = app;
