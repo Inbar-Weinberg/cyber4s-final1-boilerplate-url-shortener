@@ -1,21 +1,24 @@
-//-- packages used
+//-- import
 const express = require("express");
 const fsPromises = require("fs/promises");
 const dataTemplate = require(`${process.cwd()}/templates/urlDataTemplate`);
 const validator = require("validator");
 const app = require("../app");
 
-const router = express.Router();
+//--constants
 const URL_DATABASE_DIR = `${process.cwd()}/database/url-data.json`;
-//--
+
+//-- router
+const router = express.Router();
+
+//--router.use
 router.use(
   express.urlencoded({
     extended: true,
   })
 );
 
-//--get,post
-
+//--router.method
 router.post("/new", urlValidator, allReadyCreated, addNewUrl);
 function urlValidator(req, res, next) {
   if (validator.isURL(req.body.url)) {
