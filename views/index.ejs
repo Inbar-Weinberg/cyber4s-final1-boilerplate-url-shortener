@@ -12,14 +12,33 @@
     <h1>URL Shortener Micro Service</h1>
     <main>
         <section>
-            <form action="api/shorturl/new" method="POST">
+            <form action="../api/shorturl/new" method="POST">
                 <fieldset>
                     <legend>URL Shortener</legend>
                     <label for="url_input">URL:</label>
-                    <input id="url_input" type="url" name="url" placeholder="Enter your URL" required />
+                    <input id="url_input" type="text" name="url" placeholder="Enter your URL" required />
                     <input type="submit" value="POST URL" />
                 </fieldset>
             </form>
+        </section>
+        <section id='request-feedback'>
+            <% if (status){%>
+                <div>
+                    <%if (status>=200 && status<300){%>
+                            <p> Your request went through.</p>
+                            <p> Your new short URL is:<a href='/<%=url%>'>
+                                    <%=url%>
+                                </a></p>
+
+                            <%}else{%>
+                                <p>Error Code: <%=status%>
+                                </p>
+                                <p>
+                                    <%=url%>
+                                </p>
+                                <%}%>
+                </div>
+                <%}%>
         </section>
         <section id='url-list'>
             <div>
@@ -56,7 +75,7 @@
                             </td>
                             <td>
                                 <a href="/api/shorturl/delete/:<%=url.shortUrl%>">
-                                    <img src="https://img.icons8.com/ios/64/000000/trash--v2.png" class='trash-can'/>
+                                    <img src="https://img.icons8.com/ios/64/000000/trash--v2.png" class='trash-can' />
                                 </a>
                             </td>
                             <% })%>
