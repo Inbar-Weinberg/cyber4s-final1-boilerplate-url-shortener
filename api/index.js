@@ -4,7 +4,6 @@ const statistics = require("./statistics");
 
 const api = Router();
 
-
 api.use("/shorturl", shorturl);
 api.use("/statistics", statistics)
 

@@ -35,21 +35,45 @@
                         <th>Full URL</th>
                         <th>Short URl</th>
                         <th>Clicks</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                            <tr>
-                                <td><a href='https://www.google.com/'>
-                                        https://www.google.com/
-                                    </a> </td>
+                    <% allUrls.forEach(url=>{ %>
+                        <tr>
+                            <td>
+                                <a href='<%= url.longUrl %>'>
+                                    <%=url.longUrl%>
+                                </a>
+                            </td>
+                            <td>
+                                <a href='/<%=url.shortUrl%>'>
+                                    /<%=url.shortUrl%>
+                                </a>
+                            </td>
+                            <td>
+                                <%=url.clickCount%>
+                            </td>
+                            <td>
+                                <a href="/api/shorturl/delete/:<%=url.shortUrl%>">
+                                    <img src="https://img.icons8.com/ios/64/000000/trash--v2.png" class='trash-can'/>
+                                </a>
+                            </td>
+                            <% })%>
+                        </tr>
+                        <tr>
 
-                                <td><a href='/shorturl/123456'>
-                                        /123456
-                                    </a></td>
-                                <td><a href='/api/statistics/:shorturl-id'>
-                                        url stats
-                                    </a></td>
-                            </tr>
+                            <td><a href='https://www.google.com/'>
+                                    https://www.google.com/
+                                </a> </td>
+
+                            <td><a href='/shorturl/123456'>
+                                    /123456
+                                </a></td>
+                            <td><a href='/api/statistics/:shorturl-id'>
+                                    url stats
+                                </a></td>
+                        </tr>
 
                 </tbody>
 
@@ -60,6 +84,7 @@
     </main>
     <footer>
         <p>By <a href="https://www.freecodecamp.org/">freeCodeCamp</a></p>
+        <a href="https://icons8.com/icon/uaoORHGarIl3/trash">Trash icon by Icons8</a>
     </footer>
 </body>
 

@@ -8,19 +8,4 @@ class urlDataTemplate {
   }
 };
 
-module.export = class urlDataTemplate{};
-/**
-                    <% allUrls.forEach(url=>{%>
-                        <td><a href='<%= url.longUrl %>'>
-                                <%=url.longUrl%>
-                            </a> </td>
-
-                        <td><a href='/<%=url.shortUrl%>'>
-                                /<%=url.shortUrl%>
-                            </a></td>
-                        <td>
-                            <%=url.clickCount%>
-                        </td>
-
-                        <% })%>
-                        https://www.ynet.co.il/home/0,7340,L-8,00.html*/
+module.exports =  urlDataTemplate;
