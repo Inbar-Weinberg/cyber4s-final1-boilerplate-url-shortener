@@ -1,28 +1,16 @@
 {
     "elements": [
         {
-            "longUrl": "https://www.ynet.co.il/home/0,7340,L-8,00.html",
-            "shortUrl": "dkLz2Tw_4",
-            "counter": 0,
-            "dateCreated": "2021-03-04T10:28:10.238Z"
+            "longUrl": "google.com.il",
+            "shortUrl": "4qPAsORSQ",
+            "clickCount": 0,
+            "dateCreated": "2021-03-05T03:43:24.566Z"
         },
         {
             "longUrl": "ynet.co.il",
-            "shortUrl": "SI6Hn9bBz",
+            "shortUrl": "m9UGzqQj0",
             "clickCount": 0,
-            "dateCreated": "2021-03-05T02:38:26.192Z"
-        },
-        {
-            "longUrl": "sfdsdf.com",
-            "shortUrl": "FtTYmSpDO",
-            "clickCount": 0,
-            "dateCreated": "2021-03-05T03:15:43.852Z"
-        },
-        {
-            "longUrl": "sfd.co.il",
-            "shortUrl": "kikiZa7Og",
-            "clickCount": 0,
-            "dateCreated": "2021-03-05T03:18:03.976Z"
+            "dateCreated": "2021-03-05T04:03:42.684Z"
         }
     ]
 }

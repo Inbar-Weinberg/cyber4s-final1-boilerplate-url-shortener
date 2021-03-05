@@ -1,16 +1,24 @@
 const fsPromises = require("fs/promises");
-const DATABASE_DIR = `${process.cwd()}/database/url-data.json`;
-const DATA_TEMPLATE_DIR = `${process.cwd()}/classes/urlDataTemplate`;
+module.exports.createDataBase = createDataBase;
+
+//let dataBase;
+
+function createDataBase(dataDirectory, dataTemplateDirectory, comparisonKey) {
+  module.exports.dataBase = new dataBaseController(
+    dataDirectory,
+    dataTemplateDirectory,
+    comparisonKey,
+  );
+ // return dataBase;
+}
+
+
 
 class dataBaseController {
-  constructor(
-    dataDirectory = DATABASE_DIR,
-    dataTemplateDirectory = DATA_TEMPLATE_DIR,
-    compressionKey = "longUrl"
-  ) {
+  constructor(dataDirectory, dataTemplateDirectory, comparisonKey) {
     this.dataDirectory = dataDirectory;
     this.dataTemplate = require(dataTemplateDirectory);
-    this.compressionKey = compressionKey;
+    this.comparisonKey = comparisonKey;
     this.dataArr = undefined;
   }
 
@@ -33,7 +41,7 @@ class dataBaseController {
     return this.dataArr instanceof Array;
   }
 
-  addElement(elementTitle, key = this.compressionKey) {
+  addElement(elementTitle, key = this.comparisonKey) {
     let found = findElementByKey.call(this, elementTitle, key);
     if (!found) {
       const newDataObj = new this.dataTemplate(elementTitle);
@@ -43,7 +51,7 @@ class dataBaseController {
     return false;
   }
 
-  removeElement(elementTitle, key = this.compressionKey) {
+  removeElement(elementTitle, key = this.comparisonKey) {
     const index = findElementIndex.call(this, elementTitle);
     if (index >= 0) {
       this.dataArr.splice(index, 1);
@@ -52,7 +60,7 @@ class dataBaseController {
     return false;
   }
 
-  getElement(elementTitle, key = this.compressionKey) {
+  getElement(elementTitle, key = this.comparisonKey) {
     let index = findElementIndexByKey.call(this, elementTitle, key);
     if (index >= 0) return this.dataArr[index];
     else return undefined;
@@ -77,4 +85,4 @@ function findElementIndexByKey(elementTitle, key) {
   return this.dataArr.findIndex((element) => element[key] === elementTitle);
 }
 
-module.exports = dataBaseController;
+// module.exports = dataBaseController;
