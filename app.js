@@ -1,10 +1,16 @@
 require("dotenv").config();
-const express = require("express");
 const cors = require("cors");
+const fsPromises = require("fs/promises");
+
+const express = require("express");
 const app = express();
 const api = require("./api");
-const fsPromises = require("fs/promises");
-const URL_DATABASE_dir = `${process.cwd()}/database/url-data.json`;
+
+const dataBaseController = require(`${process.cwd()}/classes/dataBaseController`);
+
+//--constants
+const DATABASE_DIR = `${process.cwd()}/database/url-data.json`;
+const DATA_TEMPLATE_DIR = `${process.cwd()}/classes/urlDataTemplate`;
 
 //----
 app.set("view engine", "ejs");
@@ -19,17 +25,16 @@ app.get("/(:id)?(/:url)?", async (req, res) => {
   if (!isNaN(status) || !status) {
     const url = req.params.url;
     try {
-      const allUrls = JSON.parse(await fsPromises.readFile(URL_DATABASE_dir))
-        .urls;
+      let dataBase = new dataBaseController();
+      await dataBase.loadData();
+      const allUrls = dataBase.getAllElements() || [];
       res.render("index", { allUrls, status, url });
     } catch (error) {
-      console.log(error);
+      res.render("index", { allUrls: [], status: 500, url: error });
     }
   }
-  // res.redirect(`/${req.params.id}`)
 });
 
 app.use("/api", api);
-
 
 module.exports = app;

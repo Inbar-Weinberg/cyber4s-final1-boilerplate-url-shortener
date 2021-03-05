@@ -1,13 +1,13 @@
 //-- import
 const express = require("express");
 const fsPromises = require("fs/promises");
-const dataTemplate = require(`${process.cwd()}/templates/urlDataTemplate`);
 const validator = require("validator");
-const app = require("../app");
+const app = require(`${process.cwd()}/app`);
+const dataBaseController = require(`${process.cwd()}/classes/dataBaseController`);
 
 //--constants
-const URL_DATABASE_DIR = `${process.cwd()}/database/url-data.json`;
-
+const DATABASE_DIR = `${process.cwd()}/database/url-data.json`;
+const DATA_TEMPLATE_DIR = `${process.cwd()}/classes/urlDataTemplate`;
 //-- router
 const router = express.Router();
 
@@ -19,8 +19,8 @@ router.use(
 );
 
 //--router.method
-router.post("/new", urlValidator, allReadyCreated, addNewUrl);
-function urlValidator(req, res, next) {
+router.post("/new", validateUrl, addUrl, uploadData);
+function validateUrl(req, res, next) {
   if (validator.isURL(req.body.url)) {
     req.urlSent = req.body.url;
     next();
@@ -30,11 +30,19 @@ function urlValidator(req, res, next) {
     next(error);
   }
 }
-async function allReadyCreated(req, res, next) {
+async function addUrl(req, res, next) {
+  let dataBase = new dataBaseController(
+    DATABASE_DIR,
+    DATA_TEMPLATE_DIR,
+    "longUrl"
+  );
+
   try {
-    let allUrls = JSON.parse(await fsPromises.readFile(URL_DATABASE_DIR));
-    if (!allUrls.urls.find((element) => element.longUrl === req.urlSent)) {
-      req.allUrls = allUrls;
+    await dataBase.loadData();
+    req.dataBase = dataBase;
+    let urlObj = dataBase.addElement(req.urlSent);
+    if (urlObj.complete) {
+      req.newUrl = urlObj.newDataObj.shortUrl;
       next();
     } else {
       const error = new Error(
@@ -47,25 +55,14 @@ async function allReadyCreated(req, res, next) {
     next(error);
   }
 }
-async function addNewUrl(req, res, next) {
-  const newUrlData = new dataTemplate(req.body.url);
-  const message = newUrlData.shortUrl;
+
+async function uploadData(req, res, next) {
   try {
-
-    req.allUrls.urls.push(newUrlData);
-
-
-    
-    await fsPromises.writeFile(
-      URL_DATABASE_DIR,
-      JSON.stringify(req.allUrls, null, 4)
-    );
+    await req.dataBase.uploadData();
+    req.dataBase.shutDown();
     res.status(200);
-    //console.log.(`${process.cwd()}/${res.statusCode}/${message}`)
-
-    res.redirect(`../../${res.statusCode}/${message}`);
+    res.redirect(`../../${res.statusCode}/${req.newUrl}`);
   } catch (error) {
-    error.status = 505;
     next(error);
   }
 }
