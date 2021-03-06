@@ -11,7 +11,7 @@ const router = express.Router();
 //--router.use
 router.use(
   express.urlencoded({
-    extended: true,
+    extended: false,
   })
 );
 
@@ -26,6 +26,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.post("/new", async (req, res, next) => {
+  console.log(req.body.url);
   validateUrl(req, res, next);
   req.newUrlObject = req.dataBase.addElement(req.body.url);
   addUrl(req, res, next);
@@ -63,3 +64,4 @@ function addUrl(req, res, next) {
     next(error);
   }
 }
+

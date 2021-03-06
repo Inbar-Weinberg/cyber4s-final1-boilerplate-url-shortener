@@ -1,8 +1,5 @@
 const fsPromises = require("fs/promises");
-
 module.exports.createDataBase = createDataBase;
-
-//let dataBase;
 
 function createDataBase(dataDirectory, dataTemplateDirectory, comparisonKey) {
   module.exports.dataBase = new dataBaseController(
@@ -10,7 +7,6 @@ function createDataBase(dataDirectory, dataTemplateDirectory, comparisonKey) {
     dataTemplateDirectory,
     comparisonKey
   );
-  // return dataBase;
 }
 
 class dataBaseController {
@@ -82,5 +78,3 @@ function findElementByKey(elementTitle, key) {
 function findElementIndexByKey(elementTitle, key) {
   return this.dataArr.findIndex((element) => element[key] === elementTitle);
 }
-
-// module.exports = dataBaseController;

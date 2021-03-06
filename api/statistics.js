@@ -18,7 +18,7 @@ router.get("/:shortId", (req, res, next) => {
   req.searchCategory = "shortUrl";
   req.params.expected = "shortId";
   reportFound(req, res, next);
-  res.json(req.newUrlObject);
+  res.json(req.searchedUrlObject);
 });
 
 //-- exports

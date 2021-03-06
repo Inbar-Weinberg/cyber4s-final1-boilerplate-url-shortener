@@ -14,8 +14,12 @@ function dateToSQL(date) {
     pad(date.getUTCMinutes());
   return sql;
 }
+
 function validateUrl(req, res, next) {
+  console.log(typeof (req.body.url));/*
   const validator = require("validator");
+  
+  console.log((!validator.isURL(req.body.url, { require_protocol: true })))
   if (!validator.isURL(req.body.url, { require_protocol: true })) {
   } else if (!validator.isURL(req.body.url, { require_protocol: false })) {
     const error = new Error("The URL sent is not valid.");
@@ -23,7 +27,7 @@ function validateUrl(req, res, next) {
     next(error);
   } else {
     req.body.url = "https://" + req.body.url;
-  }
+  }*/
 }
 
 async function uploadDataToJson(req, res, next) {
