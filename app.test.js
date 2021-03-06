@@ -33,7 +33,7 @@ describe("Starting testing:", () => {
       .post("/api/shorturl/new")
       .type('form')
       .send({url: "http://www.me.com"})
-    expect(dataBase.dataArr.length).toBe(1);
+    expect(dataBase.dataArr.length).toBe(3);
     expect(response.status).toBe(200);
   });
 });
