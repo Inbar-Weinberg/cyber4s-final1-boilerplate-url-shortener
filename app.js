@@ -6,24 +6,19 @@ const express = require("express");
 const app = express();
 const api = require("./api");
 
-//--constants
-const DATABASE_DIR =
-  process.env.NODE_ENV === "test"
-    ? `${process.cwd()}/database/url-data-test.json`
-    : `${process.cwd()}/database/url-data.json`;
-const DATA_TEMPLATE_DIR = `${process.cwd()}/classes/urlDataTemplate`;
-
-//----
 app.set("view engine", "ejs");
+console.log(Object.keys(app.settings.view));
+//-- use after Listen.start
 app.use("/", () => {
   const { dataBase } = require(`${process.cwd()}/classes/dataBaseController`);
 });
-//app.get('./', (req, res)=>console.log (dataBase));
-
-/*
-//---
 app.use(cors()); // allow access to write files
 app.use("/public", express.static(`./public`));
+//app.get('./', (req, res)=>console.log (dataBase));
+/*
+
+//---
+
 
 //--
 app.get("/(:id)?(/:url)?", async (req, res) => {
