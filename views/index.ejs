@@ -26,7 +26,7 @@
                 <div>
                     <%if (status>=200 && status<300){%>
                             <p> Your request went through.</p>
-                            <p> Your new short URL is:<a href='/<%=url%>'>
+                            <p> Your new short URL is:<a href='/api/shorturl/<%=url%>'>
                                     <%=url%>
                                 </a></p>
 
@@ -54,8 +54,9 @@
                 <thead>
                     <tr>
                         <th>Full URL</th>
-                        <th>Short URl</th>
+                        <th>Short URL</th>
                         <th>Clicks</th>
+                        <th>Date Created</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -76,14 +77,15 @@
                                 <%=url.clickCount%>
                             </td>
                             <td>
-                                <a href="/api/shorturl/delete/:<%=url.shortUrl%>">
+                                <%=url.dateCreated%>
+                            </td>
+                            <td>
+                                <a href="/api/shorturl/delete/<%=url.shortUrl%>">
                                     <img src="https://img.icons8.com/ios/64/000000/trash--v2.png" class='trash-can' />
                                 </a>
                             </td>
                             <% })%>
                         </tr>
-
-
                 </tbody>
 
                 </thead>

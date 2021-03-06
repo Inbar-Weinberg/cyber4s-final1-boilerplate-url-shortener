@@ -1,6 +1,5 @@
 //-- import
 const express = require("express");
-const fsPromises = require("fs/promises");
 const validator = require("validator");
 const app = require(`${process.cwd()}/app`);
 
@@ -15,13 +14,16 @@ router.use(
 );
 
 //--router.method
-router.get("*/:id", (req, res) => {
-  const longUrl = req.dataBase.getElement(req.params.id, "shortUrl").longUrl;
-  if (!longUrl) {
+router.get("/:id", (req, res) => {
+  const urlObject = req.dataBase.getElement(req.params.id, "shortUrl");
+  if (!urlObject) {
     res.status(404);
+    message("No URL with this I.D was found.");
     res.redirect(`../../${res.statusCode}`);
   }
-  res.status(302).redirect(longUrl);
+  urlObject.clickCount++;
+  req.dataBase.uploadData();
+  res.status(302).redirect(urlObject.longUrl);
 });
 
 router.post("/new", validateUrl, addUrl, uploadDataToJson, (req, res) => {
@@ -40,6 +42,23 @@ function addUrl(req, res, next) {
     next(error);
   }
 }
+
+// I know its better to do this with a fetch / axios request
+router.get("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  const urlObject = req.dataBase.getElement(id, "shortUrl");
+
+  if (!urlObject) {
+    res.status(404);
+    message("No URL with this I.D was found.");
+    res.redirect(`../../${res.statusCode}`);
+  }
+  req.dataBase.removeElement(id, "shortUrl");
+  req.dataBase.uploadData().then(() => {
+    res.status(200);
+    res.redirect(`back`);
+  });
+});
 
 //--exports
 module.exports = router;

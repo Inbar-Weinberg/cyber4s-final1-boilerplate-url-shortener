@@ -1,5 +1,7 @@
 const fsPromises = require("fs/promises");
+
 module.exports.createDataBase = createDataBase;
+
 
 //let dataBase;
 
@@ -52,7 +54,7 @@ class dataBaseController {
   }
 
   removeElement(elementTitle, key = this.comparisonKey) {
-    const index = findElementIndex.call(this, elementTitle);
+    const index = findElementIndexByKey.call(this, elementTitle, key);
     if (index >= 0) {
       this.dataArr.splice(index, 1);
       return true;

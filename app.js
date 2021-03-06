@@ -17,9 +17,7 @@ app.use("/", (req, res, next) => {
 
 });
 
-//---
 
-//--
 app.get("/(:id)?(/:url)?", (req, res) => {
   const status = req.params.id;
   if (!isNaN(status) || !status) {
