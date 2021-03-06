@@ -16,18 +16,16 @@ function dateToSQL(date) {
 }
 
 function validateUrl(req, res, next) {
-  console.log(typeof (req.body.url));/*
   const validator = require("validator");
-  
-  console.log((!validator.isURL(req.body.url, { require_protocol: true })))
-  if (!validator.isURL(req.body.url, { require_protocol: true })) {
-  } else if (!validator.isURL(req.body.url, { require_protocol: false })) {
+  if (!validator.isURL(req.body.url, { require_protocol: false })) {
     const error = new Error("The URL sent is not valid.");
     error.status = 400;
-    next(error);
-  } else {
+    throw error;
+  }
+  if (!validator.isURL(req.body.url, { require_protocol: true })) {
     req.body.url = "https://" + req.body.url;
-  }*/
+  }
+  return;
 }
 
 async function uploadDataToJson(req, res, next) {
@@ -42,7 +40,7 @@ function reportFound(req, res, next) {
   if (!req.searchedUrlObject) {
     const error = new Error("No URL with this I.D was found.");
     error.status = 404;
-    next(error);
+    throw error
   }
 }
 
