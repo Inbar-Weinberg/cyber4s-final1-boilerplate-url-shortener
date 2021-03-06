@@ -12,9 +12,9 @@ app.use(cors());
 app.use("/public", express.static(`./public`));
 //-- use after Listen.start
 app.use("/", (req, res, next) => {
-  console.log('---------')
   req.dataBase = require(`${process.cwd()}/classes/dataBaseController`).dataBase;
-  next();
+  next()
+
 });
 
 //---

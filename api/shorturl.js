@@ -15,6 +15,15 @@ router.use(
 );
 
 //--router.method
+router.get("*/:id", (req, res) => {
+  const longUrl = req.dataBase.getElement(req.params.id, "shortUrl").longUrl;
+  if (!longUrl) {
+    res.status(404);
+    res.redirect(`../../${res.statusCode}`);
+  }
+  res.status(302).redirect(longUrl);
+});
+
 router.post("/new", validateUrl, addUrl, uploadDataToJson, (req, res) => {
   res.redirect(`../../${res.statusCode}/${req.shortUrl}`);
 });
@@ -32,15 +41,16 @@ function addUrl(req, res, next) {
   }
 }
 
-
-
 //--exports
 module.exports = router;
 
 //-- accessory functions:
 function validateUrl(req, res, next) {
-  if (validator.isURL(req.body.url)) next();
-  else {
+  if (validator.isURL(req.body.url, { require_protocol: true })) next();
+  else if (validator.isURL(req.body.url, { require_protocol: false })) {
+    req.body.url = "https://" + req.body.url;
+    next();
+  } else {
     const error = new Error("The URL sent is not valid.");
     error.status = 400;
     next(error);

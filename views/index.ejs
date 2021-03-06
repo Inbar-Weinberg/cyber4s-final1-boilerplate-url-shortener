@@ -33,10 +33,12 @@
                             <%}else{%>
                                 <p>Error Code: <%=status%>
                                 </p>
-                                <p>
-                                    <%=url%>
-                                </p>
-                                <%}%>
+                                <% if(url){%>
+                                    <p>
+                                        <%=url%>
+                                    </p>
+                                    <%}%>
+                                        <%}%>
                 </div>
                 <%}%>
         </section>
@@ -66,8 +68,8 @@
                                 </a>
                             </td>
                             <td>
-                                <a href='/<%=url.shortUrl%>'>
-                                    /<%=url.shortUrl%>
+                                <a href='/api/shorturl/<%=url.shortUrl%>'>
+                                    <%=url.shortUrl%>
                                 </a>
                             </td>
                             <td>
@@ -80,19 +82,7 @@
                             </td>
                             <% })%>
                         </tr>
-                        <tr>
 
-                            <td><a href='https://www.google.com/'>
-                                    https://www.google.com/
-                                </a> </td>
-
-                            <td><a href='/shorturl/123456'>
-                                    /123456
-                                </a></td>
-                            <td><a href='/api/statistics/:shorturl-id'>
-                                    url stats
-                                </a></td>
-                        </tr>
 
                 </tbody>
 
