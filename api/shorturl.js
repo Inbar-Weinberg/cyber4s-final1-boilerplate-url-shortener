@@ -26,12 +26,13 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.post("/new", async (req, res, next) => {
-  console.log(req.query);
   validateUrl(req, res, next);
   req.newUrlObject = req.dataBase.addElement(req.body.url);
   addUrl(req, res, next);
   await uploadDataToJson(req, res, next);
   res.status(200);
+  res.message = req.newUrlObject.shortUrl;
+  res.redirect(`/../?status=${res.statusCode}&message=${res.message}`);
 });
 
 // I know its better to do this with a fetch / axios request
@@ -45,12 +46,10 @@ router.get("/delete/:id", async (req, res, next) => {
   );
   await uploadDataToJson(req, res, next);
   res.status(200);
-  message = "deleted";
-  const allUrls = req.dataBase.getAllElements();
-  res.render(`index`, {allUrls, status: res.statusCode, url: message });
+  res.message = undefined;
+  res.redirect(`/../?status=${res.statusCode}`);
 });
 
-router.use('/*')
 //--exports
 module.exports = router;
 

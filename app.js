@@ -18,7 +18,11 @@ app.use("/", (req, res, next) => {
 
 app.get("/", (req, res) => {
   const allUrls = req.dataBase.getAllElements();
-  res.render("index", {allUrls, status:undefined, url:undefined });
+  res.render("index", {
+    allUrls,
+    status: req.query.status,
+    url: req.query.message,
+  });
 });
 
 app.use("/api", api);

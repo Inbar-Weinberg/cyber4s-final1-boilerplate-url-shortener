@@ -9,7 +9,8 @@ api.use("/statistics", statistics);
 //error handler
 api.use("/*", (error, req, res, next) => {
   res.status(error.status || 500);
-  res.redirect(`../../${res.statusCode}/${error}`);
+  res.message = error;
+  res.redirect(`/../?status=${res.statusCode}&message=${res.message}`);
 });
 
 module.exports = api;

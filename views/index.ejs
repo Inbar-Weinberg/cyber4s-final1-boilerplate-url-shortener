@@ -26,9 +26,10 @@
                 <div>
                     <%if (status>=200 && status<300){%>
                             <p> Your request went through.</p>
+                            <%if (url){%>
                             <p> Your new short URL is:<a href='/api/shorturl/<%=url%>'>
                                     <%=url%>
-                                </a></p>
+                                </a></p><%}%>
 
                             <%}else{%>
                                 <p>Error Code: <%=status%>

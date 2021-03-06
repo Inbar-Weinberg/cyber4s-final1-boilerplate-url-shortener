@@ -16,13 +16,13 @@ function dateToSQL(date) {
 }
 function validateUrl(req, res, next) {
   const validator = require("validator");
-  if (validator.isURL(req.body.url, { require_protocol: true })) next();
-  else if (validator.isURL(req.body.url, { require_protocol: false })) {
-    req.body.url = "https://" + req.body.url;
-  } else {
+  if (!validator.isURL(req.body.url, { require_protocol: true })) {
+  } else if (!validator.isURL(req.body.url, { require_protocol: false })) {
     const error = new Error("The URL sent is not valid.");
     error.status = 400;
     next(error);
+  } else {
+    req.body.url = "https://" + req.body.url;
   }
 }
 
