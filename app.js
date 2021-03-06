@@ -13,18 +13,12 @@ app.use("/public", express.static(`./public`));
 //-- use after Listen.start
 app.use("/", (req, res, next) => {
   req.dataBase = require(`${process.cwd()}/classes/dataBaseController`).dataBase;
-  next()
-
+  next();
 });
 
-
-app.get("/(:id)?(/:url)?", (req, res) => {
-  const status = req.params.id;
-  if (!isNaN(status) || !status) {
-    const url = req.params.url;
-    const allUrls = req.dataBase.getAllElements() || [];
-    res.render("index", { allUrls, status, url });
-  }
+app.get("/", (req, res) => {
+  const allUrls = req.dataBase.getAllElements();
+  res.render("index", {allUrls, status:undefined, url:undefined });
 });
 
 app.use("/api", api);

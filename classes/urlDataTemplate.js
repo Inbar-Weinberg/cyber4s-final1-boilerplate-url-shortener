@@ -1,5 +1,5 @@
 const shortid = require("shortid");
-const dateToSQL = require("../utils");
+const {dateToSQL} = require("../utils");
 
 class urlDataTemplate {
   constructor(url) {

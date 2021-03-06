@@ -2,19 +2,16 @@ const fsPromises = require("fs/promises");
 
 module.exports.createDataBase = createDataBase;
 
-
 //let dataBase;
 
 function createDataBase(dataDirectory, dataTemplateDirectory, comparisonKey) {
   module.exports.dataBase = new dataBaseController(
     dataDirectory,
     dataTemplateDirectory,
-    comparisonKey,
+    comparisonKey
   );
- // return dataBase;
+  // return dataBase;
 }
-
-
 
 class dataBaseController {
   constructor(dataDirectory, dataTemplateDirectory, comparisonKey) {
@@ -48,9 +45,8 @@ class dataBaseController {
     if (!found) {
       const newDataObj = new this.dataTemplate(elementTitle);
       this.dataArr.push(newDataObj);
-      return { newDataObj, success: true };
+      return newDataObj;
     }
-    return false;
   }
 
   removeElement(elementTitle, key = this.comparisonKey) {

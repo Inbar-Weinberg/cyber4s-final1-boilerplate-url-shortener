@@ -7,7 +7,7 @@ const api = Router();
 api.use("/shorturl", shorturl);
 api.use("/statistics", statistics);
 //error handler
-api.use("*", (error, req, res, next) => {
+api.use("/*", (error, req, res, next) => {
   res.status(error.status || 500);
   res.redirect(`../../${res.statusCode}/${error}`);
 });
