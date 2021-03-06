@@ -46,7 +46,7 @@ class dataBaseController {
     if (!found) {
       const newDataObj = new this.dataTemplate(elementTitle);
       this.dataArr.push(newDataObj);
-      return { newDataObj, complete: true };
+      return { newDataObj, success: true };
     }
     return false;
   }

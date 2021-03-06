@@ -5,42 +5,30 @@ const fsPromises = require("fs/promises");
 const express = require("express");
 const app = express();
 const api = require("./api");
+let dataBase;
 
 app.set("view engine", "ejs");
-console.log(Object.keys(app.settings.view));
-//-- use after Listen.start
-app.use("/", () => {
-  const { dataBase } = require(`${process.cwd()}/classes/dataBaseController`);
-});
-app.use(cors()); // allow access to write files
+app.use(cors());
 app.use("/public", express.static(`./public`));
-//app.get('./', (req, res)=>console.log (dataBase));
-/*
+//-- use after Listen.start
+app.use("/", (req, res, next) => {
+  console.log('---------')
+  req.dataBase = require(`${process.cwd()}/classes/dataBaseController`).dataBase;
+  next();
+});
 
 //---
 
-
 //--
-app.get("/(:id)?(/:url)?", async (req, res) => {
+app.get("/(:id)?(/:url)?", (req, res) => {
   const status = req.params.id;
   if (!isNaN(status) || !status) {
     const url = req.params.url;
-    try {
-      let dataBase = new dataBaseController(
-        DATABASE_DIR,
-        DATA_TEMPLATE_DIR,
-        "longUrl"
-      );
-
-      await dataBase.loadData();
-      const allUrls = dataBase.getAllElements() || [];
-      res.render("index", { allUrls, status, url });
-    } catch (error) {
-      res.render("index", { allUrls: [], status: 500, url: error });
-    }
+    const allUrls = req.dataBase.getAllElements() || [];
+    res.render("index", { allUrls, status, url });
   }
 });
 
-app.use("/api", api);*/
+app.use("/api", api);
 
 module.exports = app;
