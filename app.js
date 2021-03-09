@@ -1,6 +1,6 @@
 require("dotenv").config();
 const cors = require("cors");
-const fsPromises = require("fs/promises");
+const fsPromises = require("fs").promises;
 
 const express = require("express");
 const app = express();
