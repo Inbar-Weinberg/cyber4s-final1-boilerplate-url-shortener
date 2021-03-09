@@ -1,6 +1,6 @@
 # ![Scale-Up Velocity](./readme-files/logo-main.png) Final 1 - URL shortner 📎
 
-- Link to [`Repl.it - https://repl.it/@InbarWeinberg/1-Final-URL-Shortner#README.md`](https://repl.it/@InbarWeinberg/1-Final-URL-Shortner#README.md)
+- Link to [`Repl.it - https://repl.it/@InbarWeinberg/cyber4s-final1-boilerplate-url-shortener#README.md`](https://repl.it/@InbarWeinberg/cyber4s-final1-boilerplate-url-shortener#README.md)
 
   ## Endpoints:
 
