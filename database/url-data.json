@@ -1,0 +1,28 @@
+{
+    "elements": [
+        {
+            "longUrl": "https://google.com",
+            "shortUrl": "zP7eg7iEv",
+            "clickCount": 3,
+            "dateCreated": "2021-03-06 20:22"
+        },
+        {
+            "longUrl": "https://www.ynet.co.il/home/0,7340,L-8,00.html",
+            "shortUrl": "g8RpxV-6t",
+            "clickCount": 2,
+            "dateCreated": "2021-03-07 12:05"
+        },
+        {
+            "longUrl": "https://ynet.co.il",
+            "shortUrl": "Kyv6aa6r1",
+            "clickCount": 1,
+            "dateCreated": "2021-03-09 14:57"
+        },
+        {
+            "longUrl": "https://youtube.com",
+            "shortUrl": "LtU-zNj4o",
+            "clickCount": 2,
+            "dateCreated": "2021-03-09 14:59"
+        }
+    ]
+}
